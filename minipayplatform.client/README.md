@@ -1,12 +1,51 @@
-# React + Vite
+﻿MiniPay Admin Panel
+An internal tool for managing payment providers and simulating payment processes.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Project Description
+The MiniPay Admin Panel is a web-based application designed to centralize the management of various payment providers (like Stripe, PayPal, Klarna) for a growing e-commerce company. Additionally, the tool provides functionality to simulate payment transactions, enabling the testing of provider integrations and endpoint behavior.
 
-Currently, two official plugins are available:
+This project consists of a Backend (C# .NET 8 REST API) and a Frontend (HTML, CSS, JavaScript, React.js).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✨ Features
+Provider Management
+ - List all available payment providers.
 
-## Expanding the ESLint configuration
+ - Retrieve details for a specific provider.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ - Add new payment providers with essential information (name, URL, currency, description).
+
+ - Update existing provider information (e.g., URL, status).
+
+ - Activate or deactivate providers dynamically without service redeployment.
+
+ - Remove no longer needed providers.
+
+Payment Simulation
+ - Select an active payment provider.
+
+ - Enter amount, currency, and an optional description for the simulated transaction.
+
+ - Send a simulated payment request to the configured provider endpoint.
+
+ - Display the result of the simulated transaction (status, transaction ID, timestamp, message).
+
+🛠️ Tech Stack
+Backend
+ - Language: C#
+
+ - .NET Version: .NET 8
+
+ - API Type: REST API
+
+ - HTTP Client: HttpClient for external provider calls
+
+Frontend
+ - Technologies: HTML, CSS, JavaScript
+
+ - Framework: React.js
+
+Data Storage
+ - Storage: Json File
+
+🧪 Tests
+	- Navigate to Backend.Tests
