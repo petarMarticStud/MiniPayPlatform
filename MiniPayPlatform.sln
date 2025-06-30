@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "minipayplatform.client", "minipayplatform.client\minipayplatform.client.esproj", "{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniPayPlatform.Server", "MiniPayPlatform.Server\MiniPayPlatform.Server.csproj", "{45B78197-2DAA-40FC-B761-EB907383DFBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7BC4FC9-26AC-D54B-B758-0348B336C0C5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{45B78197-2DAA-40FC-B761-EB907383DFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B78197-2DAA-40FC-B761-EB907383DFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B78197-2DAA-40FC-B761-EB907383DFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B78197-2DAA-40FC-B761-EB907383DFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54B34100-F0C3-4353-AD45-F360B92ADFE1}
+	EndGlobalSection
+EndGlobal
