@@ -48,4 +48,4 @@ Data Storage
  - Storage: Json File
 
 🧪 Tests
-	- Navigate to Backend.Tests
+	- Navigate to <ServiceClass>.Tests
