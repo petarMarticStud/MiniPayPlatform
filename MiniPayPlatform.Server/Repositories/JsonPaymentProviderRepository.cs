@@ -2,5 +2,7 @@
 {
     public class JsonPaymentProviderRepository
     {
+        public JsonPaymentProviderRepository() { }
+
     }
 }
