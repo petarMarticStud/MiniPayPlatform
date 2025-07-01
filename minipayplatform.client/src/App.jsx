@@ -1,51 +1,53 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+// MiniPayPlatform.Client/src/App.jsx
+import React, { useState } from 'react';
+import PaymentProviderList from './components/PaymentProviderList.jsx';
+import PaymentProviderForm from './components/PaymentProviderForm.jsx';
 
 function App() {
-    const [forecasts, setForecasts] = useState();
+    const [selectedProviderId, setSelectedProviderId] = useState(null);
+    const [showForm, setShowForm] = useState(false);
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
+    const handleEditProvider = (id) => {
+        setSelectedProviderId(id);
+        setShowForm(true);
+    };
 
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+    const handleCreateNew = () => {
+        setSelectedProviderId(null);
+        setShowForm(true);
+    };
+
+    const handleSaveSuccess = () => {
+        setShowForm(false);
+        setSelectedProviderId(null);
+    };
+
+    const handleCancel = () => {
+        setShowForm(false);
+        setSelectedProviderId(null);
+    };
 
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+        <div className="min-h-screen bg-gray-100">
+            <header className="bg-blue-600 p-4 text-white text-center">
+                <h1 className="text-3xl font-bold">MiniPayPlatform Admin</h1>
+            </header>
+            <main className="container mx-auto p-4">
+                {showForm ? (
+                    <PaymentProviderForm
+                        providerId={selectedProviderId}
+                        onSaveSuccess={handleSaveSuccess}
+                        onCancel={handleCancel}
+                    />
+                ) : (
+                    <PaymentProviderList
+                        onEditProvider={handleEditProvider}
+                        onCreateNew={handleCreateNew}
+                    />
+                )}
+            </main>
         </div>
     );
-    
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
 }
 
 export default App;

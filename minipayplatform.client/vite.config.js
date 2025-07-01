@@ -47,7 +47,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+            '^/api': { // Catches all requests that start with /api (e.g. /api/paymentprovider)
                 target,
                 secure: false
             }
