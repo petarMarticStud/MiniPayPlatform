@@ -74,45 +74,70 @@ namespace MiniPayPlatform.Server.Tests
             Assert.Equal(newProvider.Name, result.Name);
         }
 
+
+        private JsonPaymentProviderRepository CreateTestRepository(string testFileName)
+        {
+            var dataPath = Path.Combine(AppContext.BaseDirectory, "Data");
+            Directory.CreateDirectory(dataPath);
+
+            var filePath = Path.Combine(dataPath, testFileName);
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            return new JsonPaymentProviderRepository(filePath);
+        }
+
         [Fact]
         public async Task UpdateProviderAsync_UpdateOldFields_OldProviderEqualsNewProvider()
         {
             // Arrange
-            var mockRepository = new Mock<IPaymentProviderRepository>();
-            var existingProvider = new PaymentProvider { Id = 1, Name = "Old Name", Url = "old.com", IsActive = true, Currency = "USD" };
-            var updatedProvider = new PaymentProvider { Id = 1, Name = "New Name", Url = "new.com", IsActive = true, Currency = "USD" };
+            var repo = CreateTestRepository("test-update.json");
+            var service = new PaymentProviderService(repo);
 
+            var provider = new PaymentProvider
+            {
+                Name = "Original",
+                Url = "original.com",
+                Currency = "USD",
+                IsActive = true
+            };
 
-            mockRepository.Setup(repo => repo.GetAsync(existingProvider.Id)).ReturnsAsync(existingProvider);
-            var service = new PaymentProviderService(mockRepository.Object);
+            var added = await service.AddProviderAsync(provider);
 
             // Act
-            await service.UpdateProviderAsync(updatedProvider);
+            added.Name = "Updated";
+            added.Url = "updated.com";
+            added.Currency = "EUR";
+            added.IsActive = false;
+
+            await service.UpdateProviderAsync(added);
+
+            var result = await service.GetProviderByIdAsync(added.Id);
 
             // Assert
-            Assert.Equal(updatedProvider.Name, existingProvider.Name);
+            Assert.Equal("Updated", result.Name);
+            Assert.Equal("updated.com", result.Url);
+            Assert.Equal("EUR", result.Currency);
+            Assert.False(result.IsActive);
         }
 
         [Fact]
-        public async Task DeleteProviderAsync_DeleteProvider_NoProviderLeft()
+        public async Task DeleteProviderAsync_DeleteProvider_OneProviderLeft()
         {
             // Arrange
-            var mockRepository = new Mock<IPaymentProviderRepository>();
-            var providerToDelete = new PaymentProvider{ Id = 1, Name = "Klarna", IsActive = true, Currency = "EUR" };
+            var repo = CreateTestRepository("test-delete.json");
+            var service = new PaymentProviderService(repo);
 
-            // Mock setup for the service's internal GetByIdAsync call before delete
-            mockRepository.Setup(repo => repo.GetAsync(1)).ReturnsAsync(providerToDelete);
-            // Mock setup for the DeleteAsync call
-            mockRepository.Setup(repo => repo.DeleteAsync(1)).Returns(Task.CompletedTask);
-
-            var service = new PaymentProviderService(mockRepository.Object);
+            var providerA = await service.AddProviderAsync(new PaymentProvider { Name = "A", Currency = "USD", IsActive = true });
+            var providerB = await service.AddProviderAsync(new PaymentProvider { Name = "B", Currency = "EUR", IsActive = false });
 
             // Act
-            await service.DeleteProviderAsync(1);
-            var result = await service.GetProviderByIdAsync(1);
+            await service.DeleteProviderAsync(providerA.Id);
+
+            var result = await service.GetAllProvidersAsync();
 
             // Assert
-            Assert.Null(result);
+            Assert.Single(result);
         }
 
 

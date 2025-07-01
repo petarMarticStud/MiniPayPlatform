@@ -14,7 +14,7 @@ namespace MiniPayPlatform.Server.Services
 
 
 
-        public async Task<IEnumerable<PaymentProvider>> GetAllProvidersAsync()
+        public async Task<List<PaymentProvider>> GetAllProvidersAsync()
         {
             return await _repository.GetAllAsync();
         }
