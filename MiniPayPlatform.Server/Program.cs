@@ -3,6 +3,9 @@ using MiniPayPlatform.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//HTTP CLient
+builder.Services.AddHttpClient(); 
+
 // Add services to the container.
 builder.Services.AddScoped<IPaymentProviderRepository, JsonPaymentProviderRepository>();
 builder.Services.AddScoped<IPaymentProviderService, PaymentProviderService>();
