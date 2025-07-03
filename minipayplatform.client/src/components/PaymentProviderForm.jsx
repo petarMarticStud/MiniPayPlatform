@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import paymentProviderService from '../services/paymentProviderService';
+import paymentProviderService from '../services/PaymentProviderService';
 import PaymentProvider from '../models/PaymentProvider';
 
 function PaymentProviderForm({ providerId, onSaveSuccess, onCancel }) {

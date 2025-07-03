@@ -15,14 +15,14 @@ namespace MiniPayPlatform.Server.Repositories
             Directory.CreateDirectory(dataDirectory);
             _filePath = Path.Combine(dataDirectory, "paymentproviders.json");
 
-            _nextId = 1;
+            _nextId = 0;
         }
 
 
         public JsonPaymentProviderRepository(string customPath)
         {
             _filePath = customPath;
-            _nextId = 1;
+            _nextId = 0;
         }
 
 

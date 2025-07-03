@@ -107,7 +107,9 @@ const paymentProviderService = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
             });
-            if (!response.ok) {
+
+            if (!response.ok)
+            {
                 throw new Error(`HTTP error!: ${response.status}`);
             }
         }

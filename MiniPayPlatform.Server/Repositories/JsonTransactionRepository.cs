@@ -14,7 +14,7 @@ namespace MiniPayPlatform.Server.Repositories
             var dataDirectory = Path.Combine(AppContext.BaseDirectory, "Data");
             Directory.CreateDirectory(dataDirectory);
             _filePath = Path.Combine(dataDirectory, "transactions.json");
-            _nextId = 1;
+            _nextId = 0;
 
         }
 
@@ -26,7 +26,7 @@ namespace MiniPayPlatform.Server.Repositories
             {
                 Directory.CreateDirectory(directory);
             }
-            _nextId = 1;
+            _nextId = 0;
 
         }
 
@@ -61,26 +61,21 @@ namespace MiniPayPlatform.Server.Repositories
         {
             if (!File.Exists(_filePath))
             {
-                await SaveTransactionsAsync(new List<Transaction>());
-                return new List<Transaction>();
+                return await Task.FromResult(new List<Transaction>());
             }
+
             else
             {
+                // Get transactions from file
                 var json = await File.ReadAllTextAsync(_filePath);
-                if (string.IsNullOrWhiteSpace(json))
+                var transactions = JsonSerializer.Deserialize<List<Transaction>>(json);
+
+                if (transactions != null)
                 {
-                    return new List<Transaction>();
+                    _nextId = transactions.Max(p => p.Id);
                 }
-                try
-                {
-                    var transactions = JsonSerializer.Deserialize<List<Transaction>>(json);
-                    return transactions ?? new List<Transaction>();
-                }
-                catch (JsonException ex)
-                {
-                    Console.WriteLine($"Error deserializing transactions from {_filePath}: {ex.Message}");
-                    return new List<Transaction>();
-                }
+
+                return await Task.FromResult(transactions);
             }
         }
 
