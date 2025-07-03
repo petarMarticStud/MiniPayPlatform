@@ -1,4 +1,3 @@
-// MiniPayPlatform.Client/src/App.jsx
 import React, { useState } from 'react';
 import PaymentProviderList from './components/PaymentProviderList.jsx';
 import PaymentProviderForm from './components/PaymentProviderForm.jsx';

@@ -53,15 +53,15 @@ function PaymentProviderList({ onEditProvider, onCreateNew }) {
     };
 
 
-    if (loading) return <div className="p-4 text-center">Loading data...</div>;
-    if (error) return <div className="p-4 bg-red-200 text-red-800 rounded">{error}</div>;
+    if (loading) return <div className="p-4 text-center text-blue-700 font-semibold bg-blue-50 rounded-lg shadow-md">Loading data...</div>;
+    if (error) return <div className="p-4 bg-red-100 text-red-700 border border-red-400 rounded-lg font-medium">{error}</div>;
 
     return (
-        <div className="bg-white p-6 rounded shadow">
-            <h2 className="text-xl font-semibold mb-4">Payment Provider</h2>
+        <div className="bg-white p-6 rounded-lg shadow-xl">
+            <h2 className="ext-2xl font-bold mb-5 text-indigo-700">Payment Provider</h2>
             <button
                 onClick={onCreateNew}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-5 rounded-lg mb-6 shadow-md transition duration-200 ease-in-out transform hover:-translate-y-0.5"
             >
                 Add Provider
             </button>
@@ -70,14 +70,14 @@ function PaymentProviderList({ onEditProvider, onCreateNew }) {
                 <p>No provider found.</p>
             ) : (
                 <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-300">
+                        <table className="p-4 text-center text-lg text-gray-600 bg-blue-50 rounded-lg border border-blue-200">
                         <thead>
                             <tr>
-                                <th className="py-2 px-4 border-b bg-gray-200 text-left">ID</th>
-                                <th className="py-2 px-4 border-b bg-gray-200 text-left">Name</th>
-                                <th className="py-2 px-4 border-b bg-gray-200 text-left">Währung</th>
-                                <th className="py-2 px-4 border-b bg-gray-200 text-left">Aktiv</th>
-                                <th className="py-2 px-4 border-b bg-gray-200 text-left">Aktionen</th>
+                                    <th className="py-3 px-4 border-b border-blue-300 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider rounded-tl-lg">ID</th>
+                                    <th className="py-3 px-4 border-b border-blue-300 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider rounded-tl-lg">Name</th>
+                                    <th className="py-3 px-4 border-b border-blue-300 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider rounded-tl-lg">Währung</th>
+                                    <th className="py-3 px-4 border-b border-blue-300 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider rounded-tl-lg">Aktiv</th>
+                                    <th className="py-3 px-4 border-b border-blue-300 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider rounded-tl-lg">Aktionen</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,7 +103,7 @@ function PaymentProviderList({ onEditProvider, onCreateNew }) {
                                         </button>
                                         <button
                                             onClick={() => handleDelete(provider.id)}
-                                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
+                                            className="bg-red-5S0 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
                                         >
                                             Delete
                                         </button>

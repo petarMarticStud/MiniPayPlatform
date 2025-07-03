@@ -9,6 +9,9 @@ builder.Services.AddHttpClient();
 // Add services to the container.
 builder.Services.AddScoped<IPaymentProviderRepository, JsonPaymentProviderRepository>();
 builder.Services.AddScoped<IPaymentProviderService, PaymentProviderService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ITransactionRepository, JsonTransactionRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
