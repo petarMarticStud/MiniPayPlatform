@@ -33,7 +33,8 @@ const TransactionSimulator = ({ onSimulationComplete }) => {
     const generateRandomTransaction = () => {
         if (paymentProviders.length === 0) {
             // This case should ideally be handled by UI disabling, but as a safeguard
-            setError("No payment providers available for simulation. Please add some first.");
+            setError
+                ("No payment providers available for simulation. Please add some first.");
             return null;
         }
 
@@ -144,7 +145,7 @@ const TransactionSimulator = ({ onSimulationComplete }) => {
                 disabled={loading || paymentProviders.length === 0 || numberOfTransactionsToSimulate <= 0}
                 className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2.5 px-5 rounded-lg shadow-md transition duration-200 ease-in-out transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                {Ff
+                {loading
                     ? `Simulating ${numberOfTransactionsToSimulate} transactions...`
                     : `Simulate ${numberOfTransactionsToSimulate} Transactions`}
             </button>
